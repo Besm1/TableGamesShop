@@ -29,5 +29,15 @@ for rec_ in recs:
         print(f'{f_names[i]}: {rec_[i]}', end='\t| ')
     print(rec_)
 
+cursor.execute('delete from users where id = 6')
 connection.commit()
+
+cursor.execute('select count(*), sum(balance), avg(balance) from users')
+total_users, total_balance, avg_balance = cursor.fetchall()[0]
+print(f'Всего юзверей: {total_users}')
+print(f'Всего на счетах: {total_balance}')
+print(f'Средний баланс: {total_balance / total_users}')
+print(f'Средний баланс (из ф-ции AVG): {avg_balance}')
+
+
 connection .close()
